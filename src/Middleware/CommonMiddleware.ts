@@ -81,7 +81,7 @@ export const initCommonMiddlewares = async (app: Express) => {
   app.use(traceMiddleware);
   app.use(traceIdHeaderMiddleware);
   app.use(limiter);
-  app.use(checkRefererOrigin);
+ // app.use(checkRefererOrigin);
   app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
   // unhandled error exception handling to be implemented
   // should be last middleware always
