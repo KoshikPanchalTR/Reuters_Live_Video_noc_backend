@@ -3,7 +3,7 @@ import { throwError } from '../Util/ErrorHandler';
 import { HTTP_STATUS_CODE, HTTP_STATUS_TYPE } from '../Util/HttpCodes';
 import { Logger } from '../Util/Logger';
 const trustedOrigins = [
-  'https://example.com',
+  'http://localhost:8089',
   'https://another-trusted-domain.com',
 ];
 

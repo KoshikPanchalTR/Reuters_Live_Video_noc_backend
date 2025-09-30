@@ -12,11 +12,11 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: 'http://localhost:8089',
       },
     ],
   },
-  apis: ['./routes/*.js'], // where your endpoints are defined
+  apis: [ './src/Routes/*.ts', './src/Routes/*.js'], // where your endpoints are defined
 };
 
 const swaggerSpec = swaggerJsDoc(options);
