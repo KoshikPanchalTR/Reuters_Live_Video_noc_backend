@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { UserController } from '../Controller/index';
 import { ROUTES_URL } from '../Util/Constants';
 const router = Router();
-
 /**
  * @swagger
  * /user:
