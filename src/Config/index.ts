@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import {
   DEFAULT_APP_NAME,
   DEFAULT_APP_PORT,
+  DEFAULT_COOKIE_SECRET,
   DEFAULT_HOST_NAME,
 } from '../Util/Constants'
 
@@ -20,6 +21,18 @@ function handleMimetypes(filetypes: string[]) {
   return filetypes.map((fileType: any) => fileType.trim());
 }
 
+/**
+ * handleCookieSameSite - to map cookies from env
+ * @param  {string} value- same site value
+ * @return {Boolean|string} same site cookie value
+ */
+function handleCookieSameSite(value: string): boolean | string | any {
+  const sameSiteOptions = ['none', 'strict', 'lax'];
+  if (sameSiteOptions.indexOf(value) > -1) {
+    return value;
+  }
+  return value === 'true';
+}
 export default {
   port: process.env.PORT ?? DEFAULT_APP_PORT,
   LOG_LEVELS: process.env.LOG_LEVELS?.split(',') || [],
@@ -33,6 +46,19 @@ export default {
     DB_NAME: process.env.MONGO_DB,
     USER: process.env.MONGO_USER,
     PASS: process.env.MONGO_PASS,
+  },
+   COOKIE: {
+    SECRET: process.env.COOKIE_SECRET || DEFAULT_COOKIE_SECRET,
+    SECURE: process.env.COOKIE_SECURE === 'true' ? true : false,
+    HTTP_ONLY: process.env.COOKIE_HTTP_ONLY === 'true' ? true : false,
+    SAME_SITE: handleCookieSameSite(process.env.COOKIE_SAME_SITE || 'none'),
+    PATH: process.env.COOKIE_PATH || '/',
+    MAX_AGE: Number(process.env.COOKIE_MAXAGE) || 60 * 60 * 1000,
+  },
+  REDIS: {
+    HOST: process.env.REDIS_HOST ?? '',
+    PORT: Number(process.env.REDIS_PORT) || 6379,
+    PASS: process.env.REDIS_PASS ?? '',
   },
    CORS: {
     ORIGIN: handleCorsOrigin(process.env.CORS_ORIGIN?.split(',') ?? []),
