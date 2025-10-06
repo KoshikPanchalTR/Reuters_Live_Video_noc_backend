@@ -16,11 +16,13 @@ import express, { Express } from 'express';
 import config from './Config/index';
 import { Logger } from './Util/Logger';
 import { initCommonMiddlewares } from './Middleware/CommonMiddleware';
+import router from './Routes';
 
 import MongoDbConnection from './Models/index';
 
 const PORT = config.port;
 const app: Express = express();
+app.use(router);
 //MongoDbConnection.connect();
 initCommonMiddlewares(app).then((parentApp: Express) => {
   parentApp.listen(PORT, () =>

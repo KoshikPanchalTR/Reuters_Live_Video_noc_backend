@@ -1,6 +1,4 @@
-// swagger.ts
-
-const swaggerJsDoc = require('swagger-jsdoc');
+import swaggerJsDoc from 'swagger-jsdoc';
 
 const options = {
   definition: {
@@ -12,11 +10,11 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:8089',
+        url: `http://localhost:${process.env.PORT}`,
       },
     ],
   },
-  apis: ['./src/Routes/*.ts', './src/Routes/*.js'], // where your endpoints are defined
+  apis: ['./src/Routes/*.ts'], // where your endpoints are defined
 };
 
 const swaggerSpec = swaggerJsDoc(options);
