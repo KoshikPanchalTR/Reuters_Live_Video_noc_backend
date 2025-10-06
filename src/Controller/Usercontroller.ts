@@ -15,10 +15,11 @@ export const userList = async (req: Request, res: Response) => {
     Logger.info('UserController: Reached changePassword endpoint', 'changePassword');
     let response = [
       {
-        name: 'vaishali',
+        user1: 'vaishali',
+        user2: 'koshik',
       },
     ];
-    if (!response) throwError(`Response' is missing!`, HTTP_STATUS_CODE.BAD_REQUEST);
+    if (!response) throwError(`Response is missing!`, HTTP_STATUS_CODE.BAD_REQUEST);
     handleResponse(res, response, null);
   } catch (err: any) {
     Logger.error('UserController: Error in changePassword endpoint', 'changePassword', err);

@@ -4,7 +4,7 @@ import { ROUTES_URL } from '../Util/Constants';
 const router = Router();
 /**
  * @swagger
- * /user:
+ * /user/getuserlist:
  *   get:
  *     summary: Get all users
  *     tags: [User]
@@ -12,10 +12,10 @@ const router = Router();
  *       200:
  *         description: A list of users
  */
-router.get(ROUTES_URL.GET_USER_LIST, UserController.userList);
+router.get(`/${ROUTES_URL.GET_USER_LIST}`, UserController.userList);
 /**
  * @swagger
- * /users/{id}:
+ * /user/{id}:
  *   get:
  *     summary: Get user by ID
  *     tags: [Users]
@@ -29,7 +29,7 @@ router.get(ROUTES_URL.GET_USER_LIST, UserController.userList);
  *       200:
  *         description: A single user
  */
-router.get('/users/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const userId = req.params.id;
   res.send({ id: userId, name: 'Alice' });
 });
